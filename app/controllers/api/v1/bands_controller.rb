@@ -16,6 +16,16 @@ class Api::V1::BandsController < ApplicationController
     end
   end
 
+  def update
+    band = Band.find(params[:id])
+
+    if band.update(band_params)
+      render json: band, status: 200, location: [:api, band]
+    else
+      render json: { errors: band.errors }, status: 422
+    end
+  end
+
   protected
 
     def band_params
