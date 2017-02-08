@@ -2,7 +2,8 @@ class Api::V1::BandsController < ApplicationController
   respond_to :json
 
   def show
-    respond_with Band.find(params[:id])
+    band = Band.find(params[:id])
+    render json: band
   end
 
   def create
