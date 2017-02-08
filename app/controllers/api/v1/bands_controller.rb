@@ -35,6 +35,6 @@ class Api::V1::BandsController < ApplicationController
   protected
 
     def band_params
-      params.require(:band).permit(:name, :user)
+      params.require(:band).permit(:name, :user, :tag_list)
     end
 end
