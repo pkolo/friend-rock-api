@@ -27,6 +27,7 @@ gem 'puma', '~> 3.0'
 
 gem 'active_model_serializers'
 gem 'devise'
+gem 'acts-as-taggable-on', '~> 4.0'
 
 gem 'pry-rails', :group => :development
 
