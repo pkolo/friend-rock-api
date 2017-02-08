@@ -26,6 +26,12 @@ class Api::V1::BandsController < ApplicationController
     end
   end
 
+  def destroy
+    band = Band.find(params[:id])
+    band.destroy
+    head 204
+  end
+
   protected
 
     def band_params
