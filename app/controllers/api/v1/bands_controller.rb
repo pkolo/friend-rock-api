@@ -2,7 +2,8 @@ class Api::V1::BandsController < ApplicationController
   respond_to :json
 
   def show
-    respond_with Band.find(params[:id])
+    band = Band.find(params[:id])
+    render json: band
   end
 
   def create
@@ -35,6 +36,6 @@ class Api::V1::BandsController < ApplicationController
   protected
 
     def band_params
-      params.require(:band).permit(:name, :user)
+      params.require(:band).permit(:name, :user, :location_list, :genre_list, :location, :latitude, :longitude)
     end
 end
