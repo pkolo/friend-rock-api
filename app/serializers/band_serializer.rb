@@ -1,7 +1,5 @@
 class BandSerializer < ActiveModel::Serializer
-  attributes :name, :genres
-
-  has_many :locations, key: :location
+  attributes :name, :genres, :location
 
   def genres
     object.genres.map do |genre|
@@ -9,7 +7,4 @@ class BandSerializer < ActiveModel::Serializer
     end
   end
 
-  def locations
-    object.locations.first.name
-  end
 end
