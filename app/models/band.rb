@@ -20,4 +20,8 @@ class Band < ApplicationRecord
   def pending_requests
     all_relationships.where(status:0, band_two: self)
   end
+
+  def friendships
+    all_relationships.where(status: 1)
+  end
 end
