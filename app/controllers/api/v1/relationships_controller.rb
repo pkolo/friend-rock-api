@@ -14,7 +14,7 @@ class Api::V1::RelationshipsController < ApplicationController
 
   def accept_friend_request
     band_one = Band.find(params[:band_id])
-    current_band = Band.find(1)
+    current_band = current_user.bands.first
     relationship = Relationship.find_by(band_one: band_one, band_two: current_band)
 
     if current_band.pending_requests.include?(relationship)
@@ -24,4 +24,18 @@ class Api::V1::RelationshipsController < ApplicationController
       render json: { errors: "You can only accept pending friend requests" }
     end
   end
+
+  def deny_friend_request
+    band_one = Band.find(params[:band_id])
+    current_band = current_user.bands.first
+    relationship = Relationship.find_by(band_one: band_one, band_two: current_band)
+
+    if current_band.pending_requests.include?(relationship)
+      relationship.update(status: 2, action_band: current_band)
+      head 204
+    else
+      render json: { errors: "You can only deny pending friend requests" }
+    end
+  end
+
 end
