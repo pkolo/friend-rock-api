@@ -4,10 +4,17 @@ class Relationship < ApplicationRecord
   belongs_to :action_band, class_name: Band
 
   validate :unique_pair
+  validate :not_self_relation
+
+  def not_self_relation
+    if band_one == band_two
+      errors.add(:band_one, "You cannot friend yourself")
+    end
+  end
 
   def unique_pair
     if any_pair? || any_reverse_pair?
-      errors.add(:band_one, "duplicate relationship exists")
+      errors.add(:band_one, "Duplicate relationship exists")
     end
   end
 
