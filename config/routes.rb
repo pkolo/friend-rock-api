@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :sessions, :only => [:create, :destroy]
       resources :bands, only: [:show, :create, :update, :destroy] do
         post '/send_friend_request', to: 'relationships#send_friend_request'
+        post '/accept_friend_request', to: 'relationships#accept_friend_request'
       end
     end
   end
