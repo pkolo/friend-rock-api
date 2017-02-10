@@ -3,8 +3,8 @@ class Relationship < ApplicationRecord
   belongs_to :band_two, class_name: Band
   belongs_to :action_band, class_name: Band
 
-  validate :unique_pair
-  validate :not_self_relation
+  validate :unique_pair, on: :create
+  validate :not_self_relation, on: :create
 
   def not_self_relation
     if band_one == band_two
