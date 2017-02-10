@@ -1,5 +1,5 @@
 class BandSerializer < ActiveModel::Serializer
-  attributes :name, :genres, :location
+  attributes :id, :name, :genres, :location
 
   def genres
     object.genres.map do |genre|
